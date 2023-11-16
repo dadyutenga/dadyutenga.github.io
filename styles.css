@@ -1,0 +1,70 @@
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav {
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  header {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #c9b1b1; /* Black color */
+    color: white; /* Text color */
+  }
+  
+  section {
+    padding: 50px 20px;
+    text-align: center; /* Center aligning content */
+  }
+  
+  footer {
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .social-icons {
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    margin-right: 10px;
+  }
+  
+  /* Adding fade-in animation for sections */
+section {
+    padding: 50px 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }

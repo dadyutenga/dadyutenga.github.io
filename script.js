@@ -10,8 +10,8 @@ const cursorEl = document.getElementById('cursor');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const script = [
-  { cmd: 'whoami', out: 'dady_nasser_utenga' },
-  { cmd: 'cat role.txt', out: 'BEng Computing (Software Engineering) — DIT\nBrand: BIG LITE CODE' },
+  { cmd: 'whoami', out: 'dadi_nasser_utenga' },
+  { cmd: 'cat role.txt', out: 'Full-stack development' },
   { cmd: 'ls skills/', out: 'full-stack/  offensive-security/  hardware-iot/  ai-ml/' },
   { cmd: 'echo $STATUS', out: 'shipping real products alongside coursework ✅' },
 ];
@@ -47,6 +47,147 @@ async function runTerminal(){
 }
 
 runTerminal();
+
+// --- GitHub projects loader -----------------------------------------------
+const projectsGrid = document.getElementById('githubProjects');
+const orgsGrid = document.getElementById('githubOrgs');
+
+function formatRepoDate(dateString){
+  return new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric' }).format(new Date(dateString));
+}
+
+function humanizeRepoName(name){
+  return name
+    .replace(/[-_]+/g, ' ')
+    .replace(/\b\w/g, character => character.toUpperCase());
+}
+
+function createProjectCard(repo){
+  const card = document.createElement('article');
+  card.className = 'project-card';
+
+  const top = document.createElement('div');
+  top.className = 'project-top';
+
+  const tag = document.createElement('span');
+  tag.className = 'project-tag';
+  tag.textContent = repo.language || 'Repository';
+
+  const link = document.createElement('a');
+  link.className = 'project-link';
+  link.href = repo.html_url;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = 'GitHub';
+
+  top.append(tag, link);
+
+  const title = document.createElement('h3');
+  title.textContent = humanizeRepoName(repo.name);
+
+  const description = document.createElement('p');
+  description.textContent = repo.description || 'Public repository from the BIG LITE CODE workspace.';
+
+  const stack = document.createElement('div');
+  stack.className = 'project-stack';
+
+  const languageChip = document.createElement('span');
+  languageChip.textContent = repo.language || 'Code';
+
+  const starsChip = document.createElement('span');
+  starsChip.textContent = `${repo.stargazers_count} stars`;
+
+  const updatedChip = document.createElement('span');
+  updatedChip.textContent = `Updated ${formatRepoDate(repo.pushed_at || repo.updated_at)}`;
+
+  stack.append(languageChip, starsChip, updatedChip);
+  card.append(top, title, description, stack);
+  return card;
+}
+
+async function loadGithubProjects(){
+  if (!projectsGrid) return;
+
+  projectsGrid.innerHTML = '<article class="project-card project-card-loading"><p>Loading public GitHub repositories...</p></article>';
+
+  try {
+    const response = await fetch('https://api.github.com/users/dadyutenga/repos?sort=updated&per_page=100');
+
+    if (!response.ok) {
+      throw new Error(`GitHub request failed with ${response.status}`);
+    }
+
+    const repos = await response.json();
+    const featuredRepos = repos
+      .filter(repo => !repo.fork && !repo.archived && repo.name !== 'dadyutenga.github.io')
+      .sort((left, right) => new Date(right.pushed_at) - new Date(left.pushed_at))
+      .slice(0, 6);
+
+    if (!featuredRepos.length) {
+      projectsGrid.innerHTML = '<article class="project-card project-card-loading"><p>No public repositories found yet.</p></article>';
+      return;
+    }
+
+    projectsGrid.innerHTML = '';
+    featuredRepos.forEach(repo => projectsGrid.appendChild(createProjectCard(repo)));
+  } catch (error) {
+    projectsGrid.innerHTML = '<article class="project-card project-card-loading"><p>Could not load GitHub repositories right now.</p></article>';
+  }
+}
+
+loadGithubProjects();
+
+function createOrgCard(org){
+  const card = document.createElement('a');
+  card.className = 'org-card';
+  card.href = org.html_url;
+  card.target = '_blank';
+  card.rel = 'noopener';
+
+  const avatar = document.createElement('img');
+  avatar.className = 'org-avatar';
+  avatar.src = org.avatar_url;
+  avatar.alt = `${org.login} avatar`;
+
+  const name = document.createElement('span');
+  name.className = 'org-name';
+  name.textContent = org.login;
+
+  const meta = document.createElement('span');
+  meta.className = 'org-meta';
+  meta.textContent = org.description || 'GitHub organization';
+
+  card.append(avatar, name, meta);
+  return card;
+}
+
+async function loadGithubOrganizations(){
+  if (!orgsGrid) return;
+
+  orgsGrid.innerHTML = '<article class="org-card org-card-loading"><p>Loading GitHub organizations...</p></article>';
+
+  try {
+    const response = await fetch('https://api.github.com/users/dadyutenga/orgs');
+
+    if (!response.ok) {
+      throw new Error(`GitHub request failed with ${response.status}`);
+    }
+
+    const orgs = await response.json();
+
+    if (!orgs.length) {
+      orgsGrid.innerHTML = '<article class="org-card org-card-loading"><p>No public organizations found.</p></article>';
+      return;
+    }
+
+    orgsGrid.innerHTML = '';
+    orgs.forEach(org => orgsGrid.appendChild(createOrgCard(org)));
+  } catch (error) {
+    orgsGrid.innerHTML = '<article class="org-card org-card-loading"><p>Could not load GitHub organizations right now.</p></article>';
+  }
+}
+
+loadGithubOrganizations();
 
 // --- Scroll-spy: highlight active tab -------------------------------------
 const tabs = document.querySelectorAll('.tab');

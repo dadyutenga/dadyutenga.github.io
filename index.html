@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dady Utenga — BIG LITE CODE</title>
-<meta name="description" content="Dady Nasser Utenga — full-stack developer, offensive security, and hardware builder. BIG LITE CODE.">
+<title>Dadi Utenga — BIG LITE CODE</title>
+<meta name="description" content="Dadi Nasser Utenga — full-stack developer, offensive security, and hardware builder. BIG LITE CODE.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260728">
 </head>
 <body>
 
@@ -25,6 +25,7 @@
     <li><a href="#about" class="tab" data-tab="about.md">about.md</a></li>
     <li><a href="#stack" class="tab" data-tab="stack.json">stack.json</a></li>
     <li><a href="#projects" class="tab" data-tab="projects/">projects/</a></li>
+    <li><a href="#organizations" class="tab" data-tab="orgs.json">orgs.json</a></li>
     <li><a href="#redteam" class="tab" data-tab="redteam.sh">redteam.sh</a></li>
     <li><a href="#contact" class="tab" data-tab="contact.sh">contact.sh</a></li>
   </ul>
@@ -41,7 +42,7 @@
       <div class="terminal" id="terminal">
         <div class="terminal-titlebar">
           <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-          <span class="terminal-path">dady@dit ~ % </span>
+          <span class="terminal-path">dadi@dit ~ % </span>
         </div>
         <div class="terminal-body">
           <pre id="typedOut" class="typed-out"></pre><span class="cursor" id="cursor">&#9608;</span>
@@ -49,8 +50,8 @@
       </div>
 
       <div class="hero-copy">
-        <p class="eyebrow">// BEng Computing (Software Engineering) &mdash; DIT, Tanzania</p>
-        <h1>Dady Nasser <span class="accent">Utenga</span></h1>
+        <p class="eyebrow">// Full-stack development &mdash; BIG LITE CODE, Tanzania</p>
+        <h1>Dadi Nasser <span class="accent">Utenga</span></h1>
         <p class="hero-role">Full-stack developer. Offensive security. Hardware builder.</p>
         <p class="hero-desc">
           I build under the brand <strong>BIG LITE CODE</strong> &mdash; shipping real products
@@ -69,6 +70,16 @@
           <a href="https://twitter.com/DadyUtenga" target="_blank" rel="noopener">@DadyUtenga</a>
         </div>
       </div>
+
+      <aside class="hero-image" aria-label="Profile photo">
+        <div class="portrait-card">
+          <img src="image.jpg" alt="Portrait of Dadi Nasser Utenga">
+          <div class="portrait-caption">
+            <span class="portrait-label">image.jpg</span>
+            <span class="portrait-note">Full-stack development, shipped from Tanzania.</span>
+          </div>
+        </div>
+      </aside>
     </div>
     <div class="scroll-hint" aria-hidden="true">scroll<span class="chev">&#8964;</span></div>
   </header>
@@ -81,12 +92,11 @@
     </div>
     <div class="about-grid">
       <p class="lede">
-        I'm a Software Engineering student at the Dar es Salaam Institute of Technology
-        (class BENG23COE), and the person behind <strong>BIG LITE CODE</strong> &mdash; a
-        one-person studio for products that actually ship: campus systems, savings-group
-        platforms, hotel management SaaS, and hardware enclosures, usually built with an
-        AI-assisted workflow I designed myself (structured prompt files &rarr; coding agents
-        &rarr; review &rarr; ship).
+        I'm the person behind <strong>BIG LITE CODE</strong> &mdash; a one-person studio for
+        products that actually ship: campus systems, savings-group platforms, hotel
+        management SaaS, and hardware enclosures, usually built with an AI-assisted workflow
+        I designed myself (structured prompt files &rarr; coding agents &rarr; review &rarr;
+        ship).
       </p>
       <ul class="about-facts">
         <li><span class="k">Focus</span><span class="v">Full-stack, offensive security, embedded/IoT</span></li>
@@ -137,71 +147,18 @@
       <span class="file-label">projects/</span>
       <h2>Selected work</h2>
     </div>
-    <div class="projects-grid">
+    <div id="githubProjects" class="projects-grid" aria-live="polite"></div>
+    <p class="projects-more">Live from <a href="https://github.com/dadyutenga" target="_blank" rel="noopener">github.com/dadyutenga</a> &mdash; updated automatically from public repositories.</p>
+  </section>
 
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">Hardware &middot; Fintech</span>
-        </div>
-        <h3>SmartPrint Kiosk</h3>
-        <p>Self-service campus document printing &amp; dispensing system. Raspberry Pi control,
-          M-Pesa/Tigo/Airtel mobile-money integration, and a strict transaction state machine
-          built for Tanzania's grid instability. Custom FreeCAD enclosure.</p>
-        <div class="project-stack"><span>Raspberry Pi</span><span>Mobile Money</span><span>FreeCAD</span></div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">Full-stack</span>
-        </div>
-        <h3>SACAS</h3>
-        <p>Academic scheduling system with constraint-satisfaction timetable generation.
-          Go/Gin backend, React 19 frontend, PostgreSQL + Redis, full RBAC audit.</p>
-        <div class="project-stack"><span>Go</span><span>React</span><span>PostgreSQL</span></div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">Mobile</span>
-        </div>
-        <h3>FamilyHub</h3>
-        <p>Family task management Android app &mdash; Kotlin, Jetpack Compose, MVVM across 14
-          screens, Supabase backend with app-usage tracking and parental controls.</p>
-        <div class="project-stack"><span>Kotlin</span><span>Compose</span><span>Supabase</span></div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">Platform</span>
-        </div>
-        <h3>quick-serve</h3>
-        <p>Zero-config backend platform for AI-generated sites: two-token auth, deploy
-          versioning, custom domain mapping, and analytics. Go/Fiber + SQLite on bare metal.</p>
-        <div class="project-stack"><span>Go</span><span>Fiber</span><span>SQLite</span></div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">Security tooling</span>
-        </div>
-        <h3>BBHunter</h3>
-        <p>Bug bounty CLI with an AI agent architecture &mdash; multi-provider AI support,
-          Telegram bot integration, and self-hosted analytics.</p>
-        <div class="project-stack"><span>CLI</span><span>AI agents</span><span>Go</span></div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-top">
-          <span class="project-tag">SaaS</span>
-        </div>
-        <h3>HMS</h3>
-        <p>Multi-tenant hotel management SaaS &mdash; laundry, procurement, restaurant/bar,
-          conferences, double-entry accounting, and real-time updates via Reverb.</p>
-        <div class="project-stack"><span>Laravel</span><span>Filament</span><span>PostgreSQL</span></div>
-      </article>
-
+  <!-- ORGANIZATIONS -->
+  <section id="organizations" class="section section-alt">
+    <div class="section-head">
+      <span class="file-label">orgs.json</span>
+      <h2>Organizations</h2>
     </div>
-    <p class="projects-more">More on <a href="https://github.com/dadyutenga" target="_blank" rel="noopener">github.com/dadyutenga</a> &mdash; EventsHog, WindTraffic, WindDesk, NetControl, DShare-HID, Maestro, and more.</p>
+    <div id="githubOrgs" class="org-grid" aria-live="polite"></div>
+    <p class="projects-more">Public organizations loaded from GitHub.</p>
   </section>
 
   <!-- RED TEAM -->
@@ -234,10 +191,7 @@
         <span class="k">Email</span>
         <span class="v">dadynasser89@gmail.com</span>
       </a>
-      <a href="tel:+255689924886" class="contact-card">
-        <span class="k">Phone</span>
-        <span class="v">+255 689 924 886</span>
-      </a>
+     
       <a href="https://github.com/dadyutenga" target="_blank" rel="noopener" class="contact-card">
         <span class="k">GitHub</span>
         <span class="v">@dadyutenga</span>
@@ -249,12 +203,12 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> BIG LITE CODE &mdash; dadyprojects.tech</span>
-      <span>Built by Dady Nasser Utenga</span>
+      <span>Built by Dadi Nasser Utenga</span>
     </div>
   </footer>
 
 </main>
 
-<script src="script.js"></script>
+<script src="script.js?v=20260728"></script>
 </body>
 </html>
